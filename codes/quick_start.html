@@ -9,10 +9,10 @@
       }
     </style>
     <script src="https://openlayers.org/en/v4.0.1/build/ol.js" type="text/javascript"></script>
-    <title>OpenLayers example</title>
+    <title>OpenLayers Quick Start</title>
   </head>
   <body>
-    <h2>My Map</h2>
+    <h2>Quick Start</h2>
     <div id="map" class="map"></div>
     <script type="text/javascript">
       var map = new ol.Map({
@@ -22,9 +22,10 @@
             source: new ol.source.OSM()
           })
         ],
+		
         view: new ol.View({
-          center: ol.proj.fromLonLat([37.41, 8.82]),
-          zoom: 4
+          center: ol.proj.fromLonLat([127.024612, 37.532600]),
+          zoom: 5
         })
       });
     </script>
