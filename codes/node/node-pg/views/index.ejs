@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <title>Vector Layer</title>
+    <link rel="stylesheet" href="https://openlayers.org/en/v4.0.1/css/ol.css" type="text/css">
+    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+    <script src="https://openlayers.org/en/v4.0.1/build/ol.js"></script>
+  </head>
+  <body>
+    <div id="map" class="map"></div>
+    <div id="info">&nbsp;</div>
+    <script>
+	
+	  var myVar = <%- val %>;
+	
+	  var vectorSource = new ol.source.Vector({}); 
+
+	  features = [];
+	  for(var i = 0; i < myVar.length; i++) {
+		var obj = myVar[i];
+		
+		var n = obj.name;
+		var g = obj.geometry;
+		
+		var geom = new ol.format.GeoJSON().readGeometry(g);
+		var f = new ol.Feature(geom);
+		features.push(f);
+	  }
+	  vectorSource.addFeatures( features );
+			  
+      var map = new ol.Map({
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.OSM()
+          }),
+          new ol.layer.Vector({
+			source: vectorSource
+		  })
+        ],
+        target: 'map',
+        view: new ol.View({
+          center: [0, 0],
+          zoom: 1
+        })
+      });
+
+    </script>
+  </body>
+</html>
